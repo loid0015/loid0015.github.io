@@ -1,11 +1,9 @@
-/* ---------------------------------------------------------
-   GOOGLE FONT – Poppins
---------------------------------------------------------- */
+/* ========================================================================== */
+/*  PAGRINDINIAI STILIAI                                                      */
+/* ========================================================================== */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* ---------------------------------------------------------
-   GLOBAL STYLE
---------------------------------------------------------- */
 html {
     scroll-behavior: smooth;
 }
@@ -23,31 +21,23 @@ p {
     text-align: justify;
 }
 
-/* ---------------------------------------------------------
-   TYPOGRAPHY
---------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Poppins", sans-serif;
     font-weight: 600;
     color: #0a2a43;
     margin-top: 20px;
     margin-bottom: 12px;
 }
 
-h1 { font-size: 42px; letter-spacing: 1px; }
+h1 { font-size: 42px; }
 h2 { font-size: 34px; }
 h3 { font-size: 28px; }
 h4 { font-size: 22px; }
 h5 { font-size: 18px; }
 h6 { font-size: 16px; }
 
-/* ---------------------------------------------------------
-   LINKS
---------------------------------------------------------- */
 a {
     color: #0056d2;
     text-decoration: none;
-    font-weight: 500;
     transition: 0.25s;
 }
 
@@ -56,9 +46,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ---------------------------------------------------------
-   BUTTONS
---------------------------------------------------------- */
 .btn-custom {
     background-color: #0d6efd;
     color: white;
@@ -79,75 +66,78 @@ a:hover {
 
 .btn-custom:active {
     transform: scale(0.96);
-    background-color: #093b82;
 }
 
-/* ---------------------------------------------------------
-   PAGE PRELOADER
---------------------------------------------------------- */
+
+/* ========================================================================== */
+/*  PRELOADER                                                                 */
+/* ========================================================================== */
+
 #preloader {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: #0a2a43;
     display: flex;
-    align-items: center;
     justify-content: center;
-    z-index: 9999;
-    animation: hidePreloader 0s ease 2s forwards;
+    align-items: center;
+    z-index: 99999;
+    animation: hidePreloader 0s ease 1.8s forwards;
 }
 
-/* Spinner animacija */
 .spinner {
     width: 60px;
     height: 60px;
-    border: 6px solid #ffffff;
+    border: 6px solid #fff;
     border-top-color: transparent;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
 
-/* Sukimosi animacija */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
 }
 
-/* Preloader dingsta po 2s */
 @keyframes hidePreloader {
-    to { visibility: hidden; opacity: 0; }
+    to { opacity: 0; visibility: hidden; }
 }
 
-/* ---------------------------------------------------------
-   SECTIONS – FADE-IN ANIMATION
---------------------------------------------------------- */
+
+/* ========================================================================== */
+/*  SEKCIONŲ FADE-IN ANIMACIJA (LD10)                                         */
+/* ========================================================================== */
+
 section {
     margin-top: 65px;
     padding: 35px 30px;
     background: white;
     border-radius: 14px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+
     opacity: 0;
-    animation: fadeInUp 1s ease forwards;
+    transform: translateY(40px);
+    animation: fadeIn 1.1s ease-out forwards;
+    animation-delay: 0.6s;
 }
 
-/* Fade-in Up Animation */
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    section {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
 
-/* ---------------------------------------------------------
-   SIDE MENU LINK ANIMATION (Bounce)
---------------------------------------------------------- */
+
+/* ========================================================================== */
+/*  MENIU ANIMACIJA                                                           */
+/* ========================================================================== */
+
 nav ul li a {
     display: inline-block;
     transition: 0.3s ease;
@@ -155,7 +145,7 @@ nav ul li a {
 
 @keyframes bounceMenu {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+    50%      { transform: translateY(-6px); }
 }
 
 nav ul li a:hover {
@@ -163,201 +153,32 @@ nav ul li a:hover {
     color: #0d6efd;
 }
 
-/* ---------------------------------------------------------
-   ALERT BOX
---------------------------------------------------------- */
-.alert-custom {
-    background: #ffe8c2;
-    color: #4a2e00;
-    border-left: 6px solid #ff9800;
-    padding: 15px 18px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: 0.25s;
-}
 
-.alert-custom:hover {
-    background: #ffddaa;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-}
-
-/* ---------------------------------------------------------
-   PROGRESS BAR
---------------------------------------------------------- */
-.progress-custom {
-    height: 20px;
-    background: #dce3f0;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.15);
-}
-
-.progress-custom .progress-bar {
-    background: linear-gradient(90deg, #007bff, #00c3ff);
-    border-radius: 10px;
-    animation: progressMove 2s linear infinite;
-}
-
-@keyframes progressMove {
-    0% { filter: brightness(0.85); }
-    50% { filter: brightness(1.15); }
-    100% { filter: brightness(0.85); }
-}
-
-/* ---------------------------------------------------------
-   CUSTOM UL
---------------------------------------------------------- */
-.custom-ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.custom-ul > li {
-    margin: 10px 0;
-    padding-left: 25px;
-    position: relative;
-}
-
-.custom-ul > li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    font-size: 22px;
-    color: #0d6efd;
-}
-
-.custom-ul ul {
-    padding-left: 25px;
-}
-
-.custom-ul ul li::before {
-    content: "–";
-    font-size: 18px;
-    color: #084298;
-}
-
-/* ---------------------------------------------------------
-   SERVICES TABLE
---------------------------------------------------------- */
-.services-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    text-align: center;
-    font-size: 16px;
-}
-
-.services-table thead th {
-    background: #0d6efd;
-    color: white;
-    padding: 14px;
-    font-size: 18px;
-    font-weight: 600;
-    border-bottom: 3px solid #063c99;
-}
-
-.services-table tbody tr:nth-child(even) { background: #f3f7ff; }
-.services-table tbody tr:nth-child(odd)  { background: #ffffff; }
-
-.services-table tbody tr:hover {
-    background: #d9e7ff;
-    transition: 0.3s;
-}
-
-.services-table td {
-    padding: 12px;
-    border-bottom: 1px solid #ccc;
-}
-
-#services { padding-top: 60px !important; }
-
-/* HERO TEKSTO RYŠKINIMAS */
-#hero h1 {
-    color: #ffffff !important;
-    text-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
-}
-
-#hero p {
-    color: #e6e6e6 !important;
-    font-weight: 500;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-}
-
-/* ---------------------------------------------------------
-   REDUCED MOTION SUPPORT (Accessibility)
-   Jei vartotojas turi judesio jautrumą, animacijos išjungtos.
---------------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-
-    /* Išjungiamos visos animacijos */
-    *, *::before, *::after {
-        animation-duration: 0s !important;
-        animation-delay: 0s !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0s !important;
-        scroll-behavior: auto !important;
-    }
-
-    /* Preloader nebesuka spinnerio */
-    .spinner {
-        animation: none !important;
-    }
-
-    /* Sekcijų animacija panaikinama */
-    section {
-        opacity: 1 !important;
-        transform: none !important;
-    }
-
-    /* Šoninio meniu bounce animacija išjungta */
-    nav ul li a:hover {
-        animation: none !important;
-        transform: none !important;
-    }
-}
-section {
-    animation: fadeInUp 1s ease 2.1s forwards;
-}
-
-#services table {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    backdrop-filter: blur(6px);
-}
-
-#services td, 
-#services th {
-    color: #000 !important;
-}
-
-/* ---------------------------------------------------------
-   ANIMUOTOS FIGŪROS APIE MANE SEKCIJOJE (SUKEISTOS ANIMACIJOS)
---------------------------------------------------------- */
+/* ========================================================================== */
+/*  ABOUT DEKORACIJOS                                                         */
+/* ========================================================================== */
 
 #about {
     position: relative;
     overflow: hidden;
 }
 
-/* Bendra figūrų klasė */
 .shape {
     position: absolute;
-    z-index: 0;
     opacity: 0.2;
+    z-index: 0;
 }
 
-/* Apskritimas dabar FLOATING */
 .shape.circle {
     width: 140px;
     height: 140px;
-    border-radius: 50%;
     background: #0d6efd;
+    border-radius: 50%;
     top: -10px;
     right: -20px;
     animation: floatShape 6s ease-in-out infinite;
 }
 
-/* Trikampis dabar ROTATING */
 .shape.triangle {
     width: 0;
     height: 0;
@@ -369,23 +190,189 @@ section {
     animation: rotateShape 12s linear infinite;
 }
 
-/* Rotacija trikampiui */
 @keyframes rotateShape {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    from { transform: rotate(0); }
+    to   { transform: rotate(360deg); }
 }
 
-/* Floating apskritimui */
 @keyframes floatShape {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-30px); }
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-30px); }
     100% { transform: translateY(0); }
 }
 
-/* Reduced motion – animacijos išjungtos */
-@media (prefers-reduced-motion: reduce) {
-    .shape {
-        animation: none !important;
-        transform: none !important;
-    }
+
+/* ========================================================================== */
+/*  HERO TEKSTAS                                                              */
+/* ========================================================================== */
+
+#hero h1 {
+    color: #fff !important;
+    text-shadow: 0 0 12px rgba(0,0,0,0.8);
+}
+
+#hero p {
+    color: #e6e6e6 !important;
+    font-weight: 500;
+    text-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+
+/* ========================================================================== */
+/*  LENTELĖS (Paslaugos + Statistika)                                         */
+/* ========================================================================== */
+
+.services-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.services-table thead th {
+    background: #0d6efd;
+    color: #fff;
+    padding: 14px;
+    font-size: 18px;
+}
+
+.services-table tbody tr:nth-child(even) {
+    background: #f3f7ff;
+}
+
+.services-table tbody tr:nth-child(odd) {
+    background: #fff;
+}
+
+.services-table tbody tr:hover {
+    background: #d9e7ff;
+}
+
+.services-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+/* ========================================================================== */
+/*  KONTAKTŲ FORMA                                                            */
+/* ========================================================================== */
+
+.contact-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 30px;
+}
+
+.field-group-full {
+    grid-column: span 2;
+}
+
+label {
+    font-weight: 600;
+}
+
+.contact-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+}
+
+.error-msg {
+    color: #ff3b3b;
+    font-size: 14px;
+}
+
+.input-error {
+    border: 2px solid #ff3b3b !important;
+    background: #ffecec;
+}
+
+.slider-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-column: span 2;
+}
+
+
+/* ========================================================================== */
+/*  POPUP                                                                     */
+/* ========================================================================== */
+
+#successPopup {
+    position: fixed;
+    bottom: 30px;
+    right: -400px;
+    background: #28a745;
+    color: white;
+    padding: 16px 26px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    opacity: 0;
+    transition: 0.6s ease;
+    z-index: 10000;
+}
+
+#successPopup.show {
+    right: 30px;
+    opacity: 1;
+}
+
+
+/* ========================================================================== */
+/*  MEMORY GAME (LD12)                                                       */
+/* ========================================================================== */
+
+.game-board {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.card {
+    width: 100px;
+    height: 120px;
+    background: #0d6efd;
+    border-radius: 10px;
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    user-select: none;
+}
+
+.card.flipped {
+    background: #20c997;
+}
+
+.card.matched {
+    background: #198754;
+}
+
+.win-message {
+    font-size: 24px;
+    font-weight: bold;
+    color: #28a745;
+    margin-top: 20px;
+}
+
+
+/* ========================================================================== */
+/*  GERIAUSIŲ REZULTATŲ LENTELĖ                                               */
+/* ========================================================================== */
+
+#bestResults td, #bestResults th {
+    padding: 10px;
+    text-align: center;
+}
+
+#bestResults {
+    margin-top: 20px;
 }
